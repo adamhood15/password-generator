@@ -6,7 +6,7 @@ const lowerAlphabet = ["a", 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'j', 'k', 'l
                        'n', 'o', 'p','q', 'r', 's', 't', 'u', 'v', 'w', 'x', 'y', 'z'];
 const upperAlphabet = ['A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I', 'J', 'K', 'L', 'M',
                        'N', 'O', 'P','Q', 'R', 'S', 'T', 'U', 'V', 'W', 'X', 'Y', 'Z'];
-const specialCharacters = [" ", "!", '"', "#", "$", "%", "&", "'", "(", ")", "*", "+", ",",
+const specialCharacters = [" ", "! ", '"', "#", "$", "%", "&", "'", "(", ")", "*", "+", ",",
                            "-", ".", "/", ":", ";", "<", ">", "=", "?", "@", "[", "]", "^", 
                            "_", "`", "{", "|", "}", "~", "\\"];
 
@@ -88,23 +88,41 @@ function generatePassword() {
   //array that stores all characters being pulled from the above data
   const pswrd = [];
 
-  //Random generator loop for all criteria met
+  /*Built a for loop to randomly pull characters from arrays to generate password*/
   for (let i = 0; i <= passwordLength; i++) {
     
+    //conditional that checks if any criteria was chosen
+    if (passwordLowerCase || passwordUpperCase || passwordNumbers || passwordSpecialChar) {
+    
+      //adds lowercase if true
+      if (passwordLowerCase) {
+      pswrd.push(lowerAlphabet[Math.floor(Math.random() * lowerAlphabet.length)]);
+      i++;
+      }
 
-    pswrd.push(lowerAlphabet[Math.floor(Math.random() * lowerAlphabet.length)]);
-    i++;
-    pswrd.push(upperAlphabet[Math.floor(Math.random() * upperAlphabet.length)]);
-    i++;
-    pswrd.push(Math.floor(Math.random() * 9));
-    i++;
-    pswrd.push(specialCharacters[Math.floor(Math.random() * specialCharacters.length)]);
-    i++;
+      //adds uppercase if true
+      if (passwordUpperCase) {
+      pswrd.push(upperAlphabet[Math.floor(Math.random() * upperAlphabet.length)]);
+      i++;
+      }
+      
+      //adds numbers if true
+      if (passwordNumbers) {
+      pswrd.push(Math.floor(Math.random() * 9));
+      i++;
+      }
 
+      //adds special characters if true
+      if (passwordSpecialChar) {
+      pswrd.push(specialCharacters[Math.floor(Math.random() * specialCharacters.length)]);
+      i++;
+      }
+
+    }
   }
 
   //Takes all values from pswrd array and joins them together as a string
-  alert(pswrd.join(''));
+  return alert(pswrd.join(''));
 
 
 }
