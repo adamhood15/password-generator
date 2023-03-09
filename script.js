@@ -85,9 +85,29 @@ function generatePassword() {
 
       }
 
-}
+  //array that stores all characters being pulled from the above data
+  const pswrd = [];
 
-//Random generator 
+  //Random generator loop for all criteria met
+  for (let i = 0; i <= passwordLength; i++) {
+    
+
+    pswrd.push(lowerAlphabet[Math.floor(Math.random() * lowerAlphabet.length)]);
+    i++;
+    pswrd.push(upperAlphabet[Math.floor(Math.random() * upperAlphabet.length)]);
+    i++;
+    pswrd.push(Math.floor(Math.random() * 9));
+    i++;
+    pswrd.push(specialCharacters[Math.floor(Math.random() * specialCharacters.length)]);
+    i++;
+
+  }
+
+  //Takes all values from pswrd array and joins them together as a string
+  alert(pswrd.join(''));
+
+
+}
 
 
 // Add event listener to generate button
