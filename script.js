@@ -12,14 +12,12 @@ const specialCharacters = [" ", "! ", '"', "#", "$", "%", "&", "'", "(", ")", "*
 
 // Write password to the #password input
 function writePassword() {
-  var password = generatePassword(); 
-  var passwordText = document.querySelector("#password");
 
-
-}
 
 //Generates the password by answering a series of prompts and confirms
 function generatePassword() {
+
+  var passwordText = document.querySelector("#password");
 
   //Password Length
   var passwordLength = prompt(`How long would you like to make your password?`);
@@ -121,12 +119,13 @@ function generatePassword() {
     }
   }
 
-  //Takes all values from pswrd array and joins them together as a string
-  return alert(pswrd.join(''));
+  
+  //Takes all values from pswrd array and joins them together as a string and prints inside password box
+  passwordText.innerHTML = pswrd.join('');
 
 
 }
-
+}
 
 // Add event listener to generate button
 generateBtn.addEventListener("click", writePassword);
