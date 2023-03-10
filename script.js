@@ -9,23 +9,29 @@ const upperAlphabet = ['A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I', 'J', 'K', 'L
 const specialCharacters = [" ", "! ", '"', "#", "$", "%", "&", "'", "(", ")", "*", "+", ",",
                            "-", ".", "/", ":", ";", "<", ">", "=", "?", "@", "[", "]", "^", 
                            "_", "`", "{", "|", "}", "~", "\\"];
-
-// Write password to the #password input
-function writePassword() {
-
+//array that stores all characters being pulled from the above data
+const pswrd = [];
 
 //Generates the password by answering a series of prompts and confirms
 function generatePassword() {
 
   var passwordText = document.querySelector("#password");
-
   //Password Length
   var passwordLength = prompt(`How long would you like to make your password?`);
+
+  //Checks if user input text instead of a number value
+  if (isNaN(passwordLength)) {
+
+    alert('Please enter only numbers in the text box');
+    generatePassword();
+  
+  }
+
   
     if ((passwordLength < 8) || (passwordLength > 128)) {
-      
-      return alert(`Please enter a number between 8 and 128`);
 
+      alert(`Please enter a number between 8 and 128`);
+      generatePassword();
       } else {
         alert(`Your password will be ${passwordLength} characters long.`);
       }
@@ -34,9 +40,8 @@ function generatePassword() {
   var passwordLowerCase = confirm(`Do you want to include lowercase letters?`);
 
     if (passwordLowerCase) {
-      
+
         alert(`Your password will include lowercase letters`);
-      
       } else {
         alert(`Your password will NOT include lowercase letters`);
       }
@@ -46,8 +51,7 @@ function generatePassword() {
 
     if (passwordUpperCase) {
       
-        alert(`Your password will include uppercase letters`);
-      
+        alert(`Your password will include uppercase letters`); 
       } else {
         alert(`Your password will NOT include uppercase letters`);
       }
@@ -58,7 +62,6 @@ function generatePassword() {
     if (passwordNumbers) {
       
         alert(`Your password will include numbers`);
-      
       } else {
         alert(`Your password will NOT include numbers`);
       }
@@ -69,7 +72,6 @@ function generatePassword() {
     if (passwordSpecialChar) {
       
         alert(`Your password will include special characters`);
-      
       } else {
         alert(`Your password will NOT include special characters`);
       }
@@ -83,8 +85,7 @@ function generatePassword() {
 
       }
 
-  //array that stores all characters being pulled from the above data
-  const pswrd = [];
+
 
   /*Built a for loop to randomly pull characters from arrays to generate password*/
   for (let i = 0; i <= passwordLength; i++) {
@@ -119,13 +120,10 @@ function generatePassword() {
     }
   }
 
-  
   //Takes all values from pswrd array and joins them together as a string and prints inside password box
   passwordText.innerHTML = pswrd.join('');
 
-
-}
 }
 
 // Add event listener to generate button
-generateBtn.addEventListener("click", writePassword);
+generateBtn.addEventListener("click", generatePassword);
